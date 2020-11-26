@@ -1,0 +1,11 @@
+@import './modern-normalize.scss';
+@import './cards.scss';
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 8px;
+}

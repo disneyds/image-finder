@@ -1,0 +1,49 @@
+.photo-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  object-fit: cover;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  width: 370px;
+  height: 400px;
+  margin: 15px;
+  padding: 20px;
+  &__img {
+    height: 300px;
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  &-item {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+}
+
+.material-icons {
+  margin-right: 8px;
+}
+
+.photo-card:hover,
+.photo-card:focus {
+  .stats {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
