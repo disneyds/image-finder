@@ -17,9 +17,6 @@ const imagesQuery = new ImagesQuery();
 refs.btn.addEventListener('click', onSearch)
 refs.btnLoadMore.addEventListener('click', onLoadMore)
 
- document
-    .querySelectorAll('.gallery-item')
-    .forEach(item => item.addEventListener('click', onGalleryItemClick));
 
 
 
