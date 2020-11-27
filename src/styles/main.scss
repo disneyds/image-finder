@@ -25,7 +25,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 500;
   width: 100vw;
   display: flex;
   justify-content: space-around;
@@ -60,15 +60,12 @@
   justify-content: center;
   align-items: center;
 }
-.spinner {
-  margin: 8px;
-}
 
 .is-hidden {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: -1;
+  top: 100;
+  left: 100;
+  margin: -1px;
   padding: -1px;
   opacity: 0;
 }

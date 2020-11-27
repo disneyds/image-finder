@@ -15,14 +15,6 @@ export class ImagesQuery {
       .then(r => r.json())
       .then(data => {
         this.incrementPage()
-        if (data.hits.length === 0) {
-        error({
-        text: `Вы просмотрели все картинки по запросу  '${this.searchQuery}'`,
-        type: 'info',
-        delay: 3000
-        });
-        return;
-        }
         return data.hits;
     });
   }

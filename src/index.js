@@ -17,11 +17,11 @@ const refs = getRefs();
 const imagesQuery = new ImagesQuery();
 
 
-refs.btn.addEventListener('click', onSearch)
+// refs.btn.addEventListener('click', onSearch)
 
 
-// const btnLoadMore = new LoadMoreBtn({selector: '.btn-sub'});
-
+const btnLoad = new LoadMoreBtn({selector: '.btn-sub'});
+btnLoad.refs.button.addEventListener('click', onSearch)
 
 refs.btnLoadMore.addEventListener('click', onLoadMore)
 
@@ -32,7 +32,7 @@ function onSearch(e) {
     e.preventDefault();
     imagesQuery.searchQuery = refs.searchForm.elements.query.value;
     imagesQuery.resetPage();
-    // btnLoadMore.disable();
+    
     if (imagesQuery.searchQuery === '') {
         alert({
         text: "Введите запрос поиска",
@@ -41,6 +41,7 @@ function onSearch(e) {
         });
         return;
     }
+    btnLoad.disable();
     clearGallery();
     fetchAndRender();
     
@@ -57,6 +58,9 @@ function onLoadMore() {
 function fetchAndRender() {
     
     imagesQuery.fetchImages().then(data => {
+
+        btnLoad.enable();
+        console.log(data);
             if (data.length === 0) {
             error({
             text: "По такому критерию картинок не найдено! Введите заново! ",
@@ -65,7 +69,16 @@ function fetchAndRender() {
             });
             return;
             }
-        // btnLoadMore.enable();
+        
+            // if (data.hits.length === 0) {
+            //     error({
+            //     text: `Вы просмотрели все картинки по запросу  '${this.searchQuery}'`,
+            //     type: 'info',
+            //     delay: 3000
+            //     });
+            //     return;
+            // }
+        
         renderCards(data)
     });
 }
