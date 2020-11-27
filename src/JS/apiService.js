@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { alert, notice, error } from '@pnotify/core';
 
 const BASE_URL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal&'
 const API_KEY = '19261458-26a7a8067c525acd82bd2f87d'
@@ -14,8 +15,16 @@ export class ImagesQuery {
       .then(r => r.json())
       .then(data => {
         this.incrementPage()
+        if (data.hits.length === 0) {
+        error({
+        text: `Вы просмотрели все картинки по запросу  '${this.searchQuery}'`,
+        type: 'info',
+        delay: 3000
+        });
+        return;
+        }
         return data.hits;
-      });
+    });
   }
 
   incrementPage() {

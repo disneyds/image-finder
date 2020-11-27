@@ -9,9 +9,14 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
+  font-family: -apple-system, BlinkMacSystemFont, 'Nerko One', 'Segoe UI',
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  position: relative;
+  padding-top: 80px;
+
+  background-image: url(https://toto-school.ru/wp-content/uploads/belyj-chistyj-fon_38.jpg);
 }
 
 ul {
