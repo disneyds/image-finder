@@ -38,6 +38,12 @@
 
   .title {
     font-size: 32px;
+    @media screen and (max-width: 550px) {
+      font-size: 30px;
+    }
+    @media screen and (max-width: 420px) {
+      font-size: 15px;
+    }
   }
 }
 
@@ -52,6 +58,12 @@
 
   .form-input {
     margin-right: 8px;
+    @media screen and (max-width: 550px) {
+      max-width: 120px;
+    }
+    @media screen and (max-width: 320px) {
+      max-width: 90px;
+    }
   }
 }
 

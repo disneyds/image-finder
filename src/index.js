@@ -15,15 +15,28 @@ import LoadMoreBtn from './JS/load-more-btn'
 
 const refs = getRefs();
 const imagesQuery = new ImagesQuery();
+const observer = new IntersectionObserver(onEntry, {
+    rootMargin: '200px',
+})
+
+function onEntry(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && imagesQuery.searchQuery !== '') {
+            fetchAndRender();
+        }
+     })
+}
+ 
+observer.observe(refs.helper)
 
 
-// refs.btn.addEventListener('click', onSearch)
+
 
 
 const btnLoad = new LoadMoreBtn({selector: '.btn-sub'});
 btnLoad.refs.button.addEventListener('click', onSearch)
 
-refs.btnLoadMore.addEventListener('click', onLoadMore)
+
 
 
 
@@ -41,45 +54,37 @@ function onSearch(e) {
         });
         return;
     }
-    btnLoad.disable();
     clearGallery();
     fetchAndRender();
     
 }
  
-function onLoadMore() {
-    fetchAndRender();
-};
- 
-
-
- 
-
-function fetchAndRender() {
-    
-    imagesQuery.fetchImages().then(data => {
-
-        btnLoad.enable();
-        console.log(data);
-            if (data.length === 0) {
-            error({
-            text: "По такому критерию картинок не найдено! Введите заново! ",
-            type: 'info',
-            delay: 3000
-            });
+async function fetchAndRender() {
+    btnLoad.disable();
+    await imagesQuery.fetchImages()
+    .then(data => {
+        if (data.length === 0) {
+                notice({
+                text: "По такому критерию картинок не найдено! Введите заново! ",
+                type: 'info',
+                delay: 3000
+                });
+            btnLoad.enable();
             return;
-            }
-        
-            // if (data.hits.length === 0) {
-            //     error({
-            //     text: `Вы просмотрели все картинки по запросу  '${this.searchQuery}'`,
-            //     type: 'info',
-            //     delay: 3000
-            //     });
-            //     return;
-            // }
-        
-        renderCards(data)
+        }
+        renderCards(data);
+        btnLoad.enable();
+    })
+    .catch(e => {
+        if (e) {
+            error({
+                text: `Вы просмотрели все картинки по запросу ${imagesQuery.searchQuery}`,
+                type: 'info',
+                delay: 3000
+            });
+            btnLoad.enable();
+            return;
+        }
     });
 }
  
